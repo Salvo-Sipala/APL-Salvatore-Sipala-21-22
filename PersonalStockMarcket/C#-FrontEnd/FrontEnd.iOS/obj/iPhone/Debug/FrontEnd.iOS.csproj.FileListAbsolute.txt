@@ -124,3 +124,4 @@ C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontE
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.iOS\obj\iPhone\Debug\FrontEnd.iOS.csproj.CopyComplete
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.iOS\obj\iPhone\Debug\FrontEnd.iOS.exe
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.iOS\obj\iPhone\Debug\FrontEnd.iOS.pdb
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.iOS\bin\iPhone\Debug\Newtonsoft.Json.dll

@@ -1150,3 +1150,8 @@ C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontE
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.Android\obj\Debug\110\stamp\_GenerateJavaStubs.stamp
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.Android\obj\Debug\110\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.Android\obj\Debug\110\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.Android\obj\Debug\110\res\drawable\xamarin_logo.png
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.Android\obj\Debug\110\res\drawable\icon_about.png
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.Android\obj\Debug\110\res\drawable\icon_feed.png
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.Android\obj\Debug\110\res\drawable\icon_settings.png
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd.Android\obj\Debug\110\android\assets\Newtonsoft.Json.dll

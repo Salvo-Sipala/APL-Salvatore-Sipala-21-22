@@ -20,7 +20,6 @@ C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontE
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\FrontEnd.csproj.AssemblyReference.cache
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\FrontEnd.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\App.xaml.g.cs
-C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\FrontEnd.AssemblyInfoInputs.cache
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\FrontEnd.AssemblyInfo.cs
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\FrontEnd.csproj.CoreCompileInputs.cache
@@ -28,3 +27,7 @@ C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontE
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\FrontEnd.dll
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\ref\FrontEnd.dll
 C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\FrontEnd.pdb
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\Views\MainPage.xaml.g.cs
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\Views\LoginPage.xaml.g.cs
+C:\Users\Salvo\Desktop\APL-Salvatore-Sipala-21-22\PersonalStockMarcket\C#-FrontEnd\FrontEnd\obj\Debug\netstandard2.0\Views\RegistrationPage.xaml.g.cs

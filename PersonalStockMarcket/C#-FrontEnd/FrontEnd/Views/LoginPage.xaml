@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             mc:Ignorable="d"
+             x:Class="FrontEnd.Views.LoginPage"
+             xmlns:viewmodels="clr-namespace:FrontEnd.ViewModels"
+             x:DataType="viewmodels:LoginViewModel"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+            <Frame VerticalOptions="End" BackgroundColor="LightGray" HasShadow="False">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Entry x:Name="EntryEmail" Placeholder="Email" FontAttributes="Bold"  
+                           PlaceholderColor="Black" HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextTransform="Lowercase"
+                           TextColor="Black"/>
+                    <Entry x:Name="EntryPassword" Placeholder="Password" FontAttributes="Bold"  
+                           PlaceholderColor="Black" HeightRequest="40"   
+                           IsPassword="True"
+                           TextColor="Black"/>
+                </StackLayout>
+            </Frame>
+
+            <Button Margin="0,0,0,0" VerticalOptions="Center" Text="Login" 
+                    TextColor="White" BackgroundColor="SlateGray"
+                    Clicked="OnLoginClicked"/>
+            <!--
+            <Button Margin="0,0,0,0" VerticalOptions="Center" Text="Sign In"
+                    TextColor="White" BackgroundColor="SlateGray"
+                    Command="{Binding SignInCommand}"/>
+            -->
+            <Label Text="Sign In" HorizontalOptions="Center" FontSize="Body"
+                   TextColor="Black">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SignInTapped"/>
+				</Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

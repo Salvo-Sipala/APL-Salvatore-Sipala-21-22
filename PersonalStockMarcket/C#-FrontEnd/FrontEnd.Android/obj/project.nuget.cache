@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dRjQi2W0hDRvFPb4HBhotqlnPN5PqjZtsz7BdsdhgwkpzlXUvKXJ3Nie25FX0BrzFnHdr7a9sdgi2jqRfT9Bww==",
+  "dgSpecHash": "St51yvUynwU4rYRMOYaVYkiXvY/wsVNOhuxQYDq+5Qxvsb1zlXNABHVELVc3F4fWEtjImBYVAaOIpbF7NYtGjQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Salvo\\Desktop\\APL-Salvatore-Sipala-21-22\\PersonalStockMarcket\\C#-FrontEnd\\FrontEnd.Android\\FrontEnd.Android.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Salvo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Salvo\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.androidx.activity\\1.1.0.5\\xamarin.androidx.activity.1.1.0.5.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.androidx.annotation\\1.1.0.8\\xamarin.androidx.annotation.1.1.0.8.nupkg.sha512",
