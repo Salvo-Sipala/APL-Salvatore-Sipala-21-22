@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:FrontEnd.Views"
+       xmlns:local="clr-namespace:FrontEnd.Views" 
+       xmlns:frontend="clr-namespace:FrontEnd" 
+       x:DataType="frontend:AppShell"
        Title="FrontEnd"
        x:Class="FrontEnd.AppShell">
 
@@ -77,20 +79,18 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
+    <TabBar Title="MainPage">
+        <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
+    </TabBar>
+
     <FlyoutItem Title="Search" Icon="icon_about.png">
-        <ShellContent Route="SearchPage" ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent Route="SearchPage" ContentTemplate="{DataTemplate local:SearchPage}" />
     </FlyoutItem>
-    <!--
     <FlyoutItem Title="WatchList" Icon="icon_feed.png">
-        <ShellContent Route="WatchListPage" ContentTemplate="{DataTemplate local:WatchListPage}" />
+        <ShellContent Route="FavouritesStockPage" ContentTemplate="{DataTemplate local:FavouritesStockPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Settings" Icon="icon-settings.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </FlyoutItem>
-    -->
-    
     <FlyoutItem Title="Logout">
-        <ShellContent Route="SearchPage" ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
     </FlyoutItem>
 
     <!--
@@ -100,12 +100,11 @@
         content you can do so by calling 
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-
-    <TabBar>
+    <TabBar Title="Login">
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
-    <TabBar>
+    <TabBar Title="Registration">
         <ShellContent Route="RegistrationPage" ContentTemplate="{DataTemplate local:RegistrationPage}" />
     </TabBar>
-    
+
 </Shell>

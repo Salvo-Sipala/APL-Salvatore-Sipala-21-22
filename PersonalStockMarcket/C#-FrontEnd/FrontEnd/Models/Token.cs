@@ -10,10 +10,11 @@ namespace FrontEnd.Models
         [JsonProperty("token")]
         private string myToken;
 
-        public Token(string token)
+        public Token(string myToken)
         {
-            myToken = token;
+            this.myToken = myToken;
         }
+
         public string MyToken
         {
             get => myToken;

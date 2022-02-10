@@ -22,7 +22,7 @@
                            PlaceholderColor="Black" HeightRequest="40"   
                            Keyboard="Plain"  
                            TextColor="Black"/>
-                    <Entry x:Name="EntryUsername" Placeholder="Username" FontAttributes="Bold"  
+                    <Entry x:Name="EntryNickname" Placeholder="Nickname" FontAttributes="Bold"  
                            PlaceholderColor="Black" HeightRequest="40"   
                            Keyboard="Plain"  
                            TextColor="Black"/>

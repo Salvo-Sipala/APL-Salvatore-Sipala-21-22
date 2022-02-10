@@ -8,31 +8,63 @@ namespace FrontEnd.Models
     public class Registration
     {
         [JsonProperty("email")]
-        public string Email { get; set; }
+        private string email;
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        private string name;
 
         [JsonProperty("surname")]
-        public string Surname { get; set; }
+        private string surname;
 
-        [JsonProperty("username")]
-        public string Username { get; set; }
+        [JsonProperty("nickname")]
+        private string nickname;
 
         [JsonProperty("password")]
-        public string Password { get; set; }
+        private string password;
 
         [JsonProperty("password_confirm")]
-        public string Password_confirm { get; set; }
+        private string password_confirm;
 
-        public Registration(string email, string name, string surname, string username, string password, string password_confirm)
+        public Registration(string email, string name, string surname, string nickname, string password, string password_confirm)
         {
-            Email = email;
-            Name = name;
-            Surname = surname;
-            Username = username;
-            Password = password;
-            Password_confirm = password_confirm;
+            this.email = email;
+            this.name = name;
+            this.surname = surname;
+            this.nickname = nickname;
+            this.password = password;
+            this.password_confirm = password_confirm;
         }
+
+        public string Email
+        {
+            get => email;
+            set => email = value;
+        }
+        public string Name
+        {
+            get => name;
+            set => name = value;
+        }
+        public string Surname
+        {
+            get => surname;
+            set => surname = value;
+        }
+        public string Nickname
+        {
+            get => nickname;
+            set => nickname = value;
+        }
+        public string Password
+        {
+            get => password;
+            set => password = value;
+        }
+        public string Password_confirm
+        {
+            get => password_confirm;
+            set => password_confirm = value;
+        }
+
     }
 }

@@ -20,7 +20,7 @@ namespace FrontEnd.Views
         public LoginPage()
         {
             InitializeComponent();
-            BindingContext = new LoginViewModel();
+            //BindingContext = new LoginViewModel();
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
@@ -46,7 +46,8 @@ namespace FrontEnd.Views
                     {
                         await SecureStorage.SetAsync("token", token.MyToken);
                         await SecureStorage.SetAsync("email", EntryEmail.Text);
-                        //await Shell.Current.GoToAsync($"///{nameof(SearchPage)}");
+                        await Shell.Current.GoToAsync($"///{nameof(SearchPage)}");
+                        //await Navigation.PushAsync(new SearchPage());
                     }
                     catch (Exception ex)
                     {

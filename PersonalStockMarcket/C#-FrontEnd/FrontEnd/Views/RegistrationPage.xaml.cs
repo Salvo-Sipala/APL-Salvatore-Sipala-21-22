@@ -20,13 +20,13 @@ namespace FrontEnd.Views
         public RegistrationPage()
         {
             InitializeComponent();
-            BindingContext = new RegistrationViewModel();
+            //BindingContext = new RegistrationViewModel();
         }
 
         private async void OnSignInClicked(object sender, EventArgs e)
         {
             if (EntryEmail.Text == null || EntryName.Text == null || 
-                EntrySurname.Text == null || EntryUsername == null || 
+                EntrySurname.Text == null || EntryNickname == null || 
                 EntryPassword.Text == null || EntryRepeatPassword == null)
             {
                 await DisplayAlert("Try again", "Insert all fields!", "OK");
@@ -36,7 +36,7 @@ namespace FrontEnd.Views
                 if (EntryPassword.Text == EntryRepeatPassword.Text)
                 {
                     Registration reg = new Registration(EntryEmail.Text, EntryName.Text, EntrySurname.Text,
-                        EntryUsername.Text, EntryPassword.Text, EntryRepeatPassword.Text);
+                        EntryNickname.Text, EntryPassword.Text, EntryRepeatPassword.Text);
 
                     string json = JsonConvert.SerializeObject(reg);
                     HttpResponseMessage response = await RegistrationRequest.DoRegistration(json);
