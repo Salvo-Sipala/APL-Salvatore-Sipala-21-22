@@ -13,15 +13,6 @@ namespace FrontEnd.Models
         [JsonProperty("shortName")]
         private string shortName;
 
-        [JsonProperty("preMarketPrice")]
-        private double preMarketPrice;
-
-        [JsonProperty("preMarketChange")]
-        private double preMarketChange;
-
-        [JsonProperty("preMarketChangePercent")]
-        private double preMarketChangePercent;
-
         [JsonProperty("regularMarketPrice")]
         private double regularMarketPrice;
 
@@ -31,20 +22,25 @@ namespace FrontEnd.Models
         [JsonProperty("regularMarketChangePercent")]
         private double regularMarketChangePercent;
 
-        public Stock(string symbol, string shortName, double preMarketPrice, double preMarketChange,
-            double preMarketChangePercent, double regularMarketPrice, double regularMarketChange,
+        public Stock()
+        {
+
+        }
+        public Stock(string symbol, string shortName,  double regularMarketPrice, double regularMarketChange,
             double regularMarketChangePercent)
         {
             this.symbol = symbol;
             this.shortName = shortName;
-            this.preMarketPrice = preMarketPrice;
-            this.preMarketChange = preMarketChange;
-            this.preMarketChangePercent = preMarketChangePercent;
             this.regularMarketPrice = regularMarketPrice;
             this.regularMarketChange = regularMarketChange;
             this.regularMarketChangePercent = regularMarketChangePercent;
         }
 
+        public Stock(string symbol, string shortName)
+        {
+            this.symbol = symbol;
+            this.shortName = shortName;
+        }
         public string Symbol
         {
             get => symbol;
@@ -55,21 +51,6 @@ namespace FrontEnd.Models
             get => shortName;
             set => shortName = value;
         }
-        public double PreMarketPrice
-        {
-            get => preMarketPrice;
-            set => preMarketPrice = value;
-        }
-        public double PreMarketChange
-        {
-            get => preMarketChange;
-            set => preMarketChange = value;
-        }
-        public double PreMarketChangePercent
-        {
-            get => preMarketChangePercent;
-            set => preMarketChangePercent = value;
-        }
         public double RegularMarketPrice
         {
             get => regularMarketPrice;
@@ -77,14 +58,13 @@ namespace FrontEnd.Models
         }
         public double RegularMarketChange
         {
-            get => regularMarketChange;
+            get => Math.Round(regularMarketChange,2);
             set => regularMarketChange = value;
         }
         public double RegularMarketChangePercent
         {
-            get => regularMarketChangePercent;
+            get => Math.Round(regularMarketChangePercent, 2);
             set => regularMarketChangePercent = value;
         }
-
     }
 }

@@ -11,10 +11,11 @@ namespace FrontEnd.RestControllers
 {
     public class StockRequest
     {
-        public static async Task<HttpResponseMessage> GetStockBySymbol(string symbol)
+        public static async Task<HttpResponseMessage> GetStockBySymbol(string json_symbol)
         {
             string token;
             HttpClient client = new HttpClient();
+            StringContent content = new StringContent(json_symbol, Encoding.UTF8, "application/json");
 
             try
             {
@@ -27,7 +28,7 @@ namespace FrontEnd.RestControllers
             }
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", token);
-            HttpResponseMessage response = await client.GetAsync(RestUrl.Base_url + "/stock_search");
+            HttpResponseMessage response = await client.PostAsync(RestUrl.Base_url + "/stock_search", content);
             return await Task.FromResult(response);
         }
 
@@ -51,10 +52,11 @@ namespace FrontEnd.RestControllers
             return await Task.FromResult(response);
         }
 
-        public static async Task<HttpResponseMessage> FollowStock()
+        public static async Task<HttpResponseMessage> FollowStock(string followed_stock)
         {
             string token;
             HttpClient client = new HttpClient();
+            StringContent content = new StringContent(followed_stock, Encoding.UTF8, "application/json");
 
             try
             {
@@ -67,11 +69,11 @@ namespace FrontEnd.RestControllers
             }
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", token);
-            HttpResponseMessage response = await client.GetAsync(RestUrl.Base_url + "/follow_stock");
+            HttpResponseMessage response = await client.PostAsync(RestUrl.Base_url + "/follow_stock", content);
             return await Task.FromResult(response);
         }
 
-        public static async Task<HttpResponseMessage> GetFavouritesStocks()
+        public static async Task<HttpResponseMessage> GetUserFavouritesStocks()
         {
             string token;
             HttpClient client = new HttpClient();
@@ -87,7 +89,7 @@ namespace FrontEnd.RestControllers
             }
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", token);
-            HttpResponseMessage response = await client.GetAsync(RestUrl.Base_url + "/get_favourites_stocks");
+            HttpResponseMessage response = await client.GetAsync(RestUrl.Base_url + "/get_user_favourites_stocks");
             return await Task.FromResult(response);
         }
 

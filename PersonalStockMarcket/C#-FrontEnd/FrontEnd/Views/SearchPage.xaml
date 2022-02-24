@@ -15,8 +15,11 @@
                        FontSize="Medium"
                        FontAttributes="Bold"
                        SearchButtonPressed="OnSearchPressed" />
-            
-            <CollectionView x:Name="SearchCollectionView">
+
+            <CollectionView x:Name="SearchCollectionView" ItemsSource="{Binding SearchedStock}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Span="2" Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10" RowSpacing="0">
@@ -36,7 +39,7 @@
                                    FontSize="Large"
                                    FontAttributes="Bold"
                                    TextColor="Gray" />
-                            <Label Text="{Binding ShortName}" 
+                            <Label Text="{Binding Shortname}" 
                                    Grid.Row="1"
                                    Grid.Column="0"
                                    Padding="30,0,0,0"

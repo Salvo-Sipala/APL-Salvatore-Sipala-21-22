@@ -12,6 +12,7 @@ namespace FrontEnd.RestControllers
         public static async Task<HttpResponseMessage> DoLogin(string json)
         {
             HttpClient client = new HttpClient();
+            // Creates a new instance of the System.Net.Http.StringContent class.
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await client.PostAsync(RestUrl.Base_url + RestUrl.Login_url, content);

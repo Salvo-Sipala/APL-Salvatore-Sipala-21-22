@@ -77,3 +77,29 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:  # Each time a user is created, a token will be generated
         Token.objects.create(user=instance)
+
+
+class Stock(models.Model):
+    # id = models.AutoField(primary_key=True, default=0, null=False)
+    symbol = models.CharField(primary_key=True, max_length=20, null=False, unique=True)
+    shortName = models.CharField(max_length=100)
+    # regularMarketPrice = models.DecimalField(max_digits=10, decimal_places=7)
+    # regularMarketChange = models.DecimalField(max_digits=10, decimal_places=7)
+    # regularMarketChangePercent = models.DecimalField(max_digits=10, decimal_places=7)
+    regularMarketPrice = models.FloatField()
+    regularMarketChange = models.FloatField()
+    regularMarketChangePercent = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "Stock Symbol: " + self.symbol + ", Stock name: " + self.shortName
+
+
+class FollowedStock(models.Model):
+    user = models.ForeignKey('AppUser', on_delete=models.CASCADE)  # A many-to-one relationship.
+    stock_symbol = models.ForeignKey('Stock', on_delete=models.CASCADE)
+    # symbol = models.CharField(max_length=20, null=False, unique=True)
+
+    class Meta:
+        unique_together = ['user', 'stock_symbol']

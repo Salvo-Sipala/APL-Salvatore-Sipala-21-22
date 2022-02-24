@@ -4,13 +4,13 @@
              x:Class="FrontEnd.Views.FavouritesStockPage">
     <ContentPage.Content>
         <StackLayout Margin="20">
-            <CollectionView x:Name="InfoCollection" ItemsSource="{Binding}">
+            <CollectionView x:Name="FollowedCollection" ItemsSource="{Binding}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Span="2" Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid Padding="0" RowSpacing="20" ColumnSpacing="40">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -21,44 +21,46 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
+                            <Label Text="Ticker" Grid.Row="0" Grid.Column="0" 
+                                   TextColor="Red"
+                                   FontSize="Medium" />
+                            <Label Text="Last Price" Grid.Row="0" Grid.Column="1"
+                                   TextColor="Green"
+                                   FontSize="Medium" />
+                            <Label Text="Change" Grid.Row="0" Grid.Column="2"
+                                   TextColor="Blue"
+                                   FontSize="Medium" />
                             <Label Text="{Binding Symbol}"
-                                   Grid.Row="0"
+                                   Grid.Row="1"
                                    Grid.Column="0"
-                                   Padding="30,0,0,0"
+                                   Padding="0,0,0,0"
+                                   Margin="0,0,0,0"
                                    FontSize="Large"
                                    FontAttributes="Bold"
                                    TextColor="Gray" />
                             <Label Text="{Binding Shortname}"
-                                   Grid.Row="1"
+                                   Grid.Row="2"
                                    Grid.Column="0"
-                                   Padding="30,0,0,0"
+                                   Padding="0,0,0,0"
                                    FontSize="Medium"
                                    TextColor="Gray" />
-                            <Button Text="Follow"
-                                    CommandParameter="{Binding Symbol}"
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    Margin="20,10,30,10"
-                                    Padding="10,10,10,10"
-                                    HorizontalOptions="Start"/>
                             <Label Text="{Binding RegularMarketPrice}"
-                                   Grid.Row="0"
+                                   Grid.Row="1"
                                    Grid.Column="1"
-                                   Padding="30,0,0,0"
-                                   FontSize="Large"
-                                   FontAttributes="Bold"
+                                   FontSize="Medium"
+                                   Margin="0,0,0,0"
+                                   FontAttributes="Italic"
                                    TextColor="Gray" />
                             <Label Text="{Binding RegularMarketChange}"
-                                   Grid.Row="0"
-                                   Grid.Column="2"
-                                   Padding="30,0,0,0"
-                                   FontSize="Large"
-                                   FontAttributes="Bold"
-                                   TextColor="Gray" />
-                            <Label Text="{Binding RegularMarketChangePercent}"
                                    Grid.Row="1"
                                    Grid.Column="2"
-                                   Padding="30,0,0,0"
+                                   FontSize="Medium"
+                                   Margin="0,0,0,0"
+                                   FontAttributes="Italic"
+                                   TextColor="Gray" />
+                            <Label Text="{Binding RegularMarketChangePercent}"
+                                   Grid.Row="2"
+                                   Grid.Column="2"
                                    FontSize="Medium"
                                    TextColor="Gray" />
                         </Grid>
