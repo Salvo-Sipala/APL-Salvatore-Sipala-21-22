@@ -28,7 +28,7 @@ namespace FrontEnd.RestControllers
             }
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", token);
-            HttpResponseMessage response = await client.PostAsync(RestUrl.Base_url + "/stock_search", content);
+            HttpResponseMessage response = await client.PutAsync(RestUrl.Base_url + "/stock_search", content);
             return await Task.FromResult(response);
         }
 
@@ -69,7 +69,7 @@ namespace FrontEnd.RestControllers
             }
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", token);
-            HttpResponseMessage response = await client.PostAsync(RestUrl.Base_url + "/follow_stock", content);
+            HttpResponseMessage response = await client.PutAsync(RestUrl.Base_url + "/follow_stock", content);
             return await Task.FromResult(response);
         }
 

@@ -54,7 +54,8 @@
                                     Padding="10,10,10,10"
                                     HorizontalOptions="Start"
                                     CommandParameter="{Binding Symbol}" 
-                                    Clicked="OnFollowButtonClicked"/>
+                                    Clicked="OnFollowButtonClicked"
+                                    TextColor="White" BackgroundColor="SlateGray" />
                             <Label Text="{Binding RegularMarketPrice}"
                                    Grid.Row="1"
                                    Grid.Column="1"

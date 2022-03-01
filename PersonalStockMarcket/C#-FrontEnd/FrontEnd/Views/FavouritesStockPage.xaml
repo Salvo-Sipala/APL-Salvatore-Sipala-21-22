@@ -4,7 +4,10 @@
              x:Class="FrontEnd.Views.FavouritesStockPage">
     <ContentPage.Content>
         <StackLayout Margin="20">
-            <CollectionView x:Name="FollowedCollection" ItemsSource="{Binding}">
+            <Button Text="Show my favourites stocks!"
+                    TextColor="White" BackgroundColor="SlateGray" 
+                    Clicked="Button_Clicked"/>
+            <CollectionView x:Name="FollowedCollection" ItemsSource="{Binding FollowedStocks}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Span="2" Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
@@ -12,14 +15,14 @@
                     <DataTemplate>
                         <Grid Padding="0" RowSpacing="20" ColumnSpacing="40">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Text="Ticker" Grid.Row="0" Grid.Column="0" 
                                    TextColor="Red"

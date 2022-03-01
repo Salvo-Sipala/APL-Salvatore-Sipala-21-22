@@ -40,7 +40,6 @@ namespace FrontEnd.Views
 
             if (response.IsSuccessStatusCode)
             {
-                string response_content = await response.Content.ReadAsStringAsync();
                 await DisplayAlert("Done!", "Stock Followed!", "OK");
                 //FavouritesStock = JsonConvert.DeserializeObject<List<Stock>>(response_content);
                 //await Navigation.PushAsync(new FavouritesStockPage(SearchedStock));
@@ -54,7 +53,8 @@ namespace FrontEnd.Views
                 }
                 if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
-                    await DisplayAlert("Try Again!", "Invalid request", "OK");
+                    string response_content = await response.Content.ReadAsStringAsync();
+                    await DisplayAlert("Try Again!", response_content, "OK");
                 }
             }
         }

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'BackEnd.apps.BackendConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

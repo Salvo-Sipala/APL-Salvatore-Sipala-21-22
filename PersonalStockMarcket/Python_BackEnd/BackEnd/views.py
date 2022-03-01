@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.utils import DatabaseError
 from django.shortcuts import render
 from django.http import JsonResponse
 from djongo.exceptions import SQLDecodeError
@@ -9,8 +10,8 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from .models import FollowedStock
-from .serializers import RegistrationSerializer, StockSerializer, FollowedStockSerializer
+from BackEnd.models import AppUser, Stock, FollowedStock
+from BackEnd.serializers import RegistrationSerializer, StockSerializer, FollowedStockSerializer
 from utilities.stock_mapping import *
 
 import json
@@ -51,7 +52,7 @@ def register_user(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST'])
+@api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def stock_search(request):
     """
@@ -59,7 +60,7 @@ def stock_search(request):
     :param request: request from the front-end
     :return: response with data to the front-end
     """
-    # increment_search_counter(request)
+    #increment_search_counter(request)
     # request_data = json.loads(request.body.decode('utf-8'))
     headers = {
         'Content-Type': 'application/json',
@@ -73,13 +74,12 @@ def stock_search(request):
     if response.status_code == 200:
         json_data = json.loads(response.text)  # json_data is a dict, response.text is a string (in the shape of a dict)
         response_json = search_stock_mapping(json_data)
-        # res = json.dumps(response_json)
         return Response(response_json, status=status.HTTP_200_OK)
     else:
         return Response({'response': 'Failed to search!'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST'])
+@api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def follow_new_stock(request):
     """
@@ -96,20 +96,29 @@ def follow_new_stock(request):
         'stock_symbol': followed_symbol
     }
 
-    followed_stock_serializer = FollowedStockSerializer(data=dict_followed_stock)
-    if followed_stock_serializer.is_valid():
-        if followed_stock_serializer.validated_data['user'] != request.user:
-            return Response({'response': 'You have no permissions to create an observed product for somebody '
-                                         'else!'}, status=status.HTTP_401_UNAUTHORIZED)
+    try:
+        # user that made follow request
+        user_for_follow = AppUser.objects.get(email=dict_followed_stock['user'])
+        # QuerySet that contains stock followed by user
+        follow_stock_selected = FollowedStock.objects.filter(user_id=user_for_follow.id)
+        # list comprehension of stock already followed
+        symbol_list_followed = [f.stock_symbol_id for f in follow_stock_selected]
+
+        if dict_followed_stock['stock_symbol'] in symbol_list_followed:
+            return Response('This Stock is already followed!', status=status.HTTP_400_BAD_REQUEST)
         else:
-            try:
-                followed_stock_serializer.save()
-            except SQLDecodeError:
-                return Response({'response': 'This element is already observed'}, status=status.HTTP_400_BAD_REQUEST)
-    else:
-        print(followed_stock_serializer.errors)
-        return Response(followed_stock_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    return Response('This is selected stock', status=status.HTTP_200_OK)
+            followed_stock_serializer = FollowedStockSerializer(data=dict_followed_stock)
+            if followed_stock_serializer.is_valid():
+                try:
+                    followed_stock_serializer.save()
+                    return Response(followed_stock_serializer.data, status=status.HTTP_200_OK)
+                except DatabaseError:
+                    return Response({'response': 'DatabaseError'}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response(followed_stock_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    except ObjectDoesNotExist:
+        return Response({'response': 'This stock does not exist'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
@@ -121,16 +130,17 @@ def get_user_favourites_stocks(request):
     :return: response with data to the front-end
     """
     try:
-        followed = FollowedStock.objects.filter(user=request.user.id)
-        data = []
+        followed = FollowedStock.objects.filter(user_id=request.user.id)
+        stock_list = []
+        stock_serializer = StockSerializer()
         for f in followed:
-            stock = Stock.objects.get(id=f.stock_symbol)
-            stock_serializer = StockSerializer(stock)
-            data.append({
-                "user": f.user.email,
-                "product": stock_serializer.data,
-            })
-        return Response(data, status=status.HTTP_200_OK)
+            stock = Stock.objects.get(symbol=f.stock_symbol_id)
+            stock_list.append(stock)
+            stock_serializer = StockSerializer(data=stock_list, many=True)
+            if stock_serializer.is_valid():
+                print("Serializer is valid!")
+
+        return Response(stock_serializer.data, status=status.HTTP_200_OK)
     except ObjectDoesNotExist:
         return Response({'response': 'There are no observations for this user at the moment'},
                         status=status.HTTP_400_BAD_REQUEST)
@@ -138,21 +148,19 @@ def get_user_favourites_stocks(request):
 
 def increment_search_counter(request):
     headers = {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
     }
 
-    url = "http://localhost:8081/stats/search_increment"
+    url = "http://localhost:8082/stats/search_increment"
 
     data = {
         'symbol': request.data,
     }
-
-    response = requests.post(url=url, headers=headers, data=data)
-
+    print(data)
+    response = requests.put(url=url, headers=headers, data=data)
+    print(response.text)
     if response.status_code == 200:
         json_data = json.loads(response.text)  # json_data is a dict, response.text is a string (in the shape of a dict)
-        response_json = search_stock_mapping(json_data)
-        # res = json.dumps(response_json)
-        return Response(response_json, status=status.HTTP_200_OK)
+        print(json_data)
     else:
-        return Response({'response': 'Failed to search!'}, status=status.HTTP_400_BAD_REQUEST)
+        print(response.status_code)

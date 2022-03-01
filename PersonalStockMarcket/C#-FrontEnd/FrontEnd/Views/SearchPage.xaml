@@ -53,7 +53,8 @@
                                     Margin="20,10,30,10"
                                     Padding="10,10,10,10"
                                     HorizontalOptions="Start"
-                                    />
+                                    TextColor="White" 
+                                    BackgroundColor="SlateGray" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
