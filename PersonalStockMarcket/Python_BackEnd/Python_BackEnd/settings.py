@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'Python_BackEnd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'stock_db',
+        'NAME': 'stockDB',
         'CLIENT': {
             'host': 'localhost',
         }

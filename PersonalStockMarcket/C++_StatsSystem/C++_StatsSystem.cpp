@@ -21,6 +21,7 @@ using namespace std;
 
 map<utility::string_t, utility::string_t> requestDictionary;
 map<utility::string_t, int> responseDictionary;
+json::value myMap;
 
 
 void display_json(json::value const& jvalue, utility::string_t const& prefix);
@@ -98,7 +99,7 @@ void handle_get(http_request request)
 void handle_request(http_request request, function<void(json::value const&, json::value&)> action)
 {
 	//empty json object
-	auto response = json::value::array();
+	auto response = json::value::object();
 
 	request
 		.extract_json()			// return pplx::task<json::value> task, input of the lambda
@@ -121,16 +122,15 @@ void handle_request(http_request request, function<void(json::value const&, json
 			})
 		.wait();
 
-			response = DictCreation::mapToJson(responseDictionary);
-			display_json(response, L"Response: ");
+	response = DictCreation::mapToJson(responseDictionary);
+	display_json(response, L"Response: ");
 
-			request.reply(status_codes::OK, response);
+	request.reply(status_codes::OK, response);
 }
 
 void handle_put(http_request request)
 {
 	PRINT("\nHandle PUT\n");
-	wcout << "r.body:" << request.body() << endl;
 	handle_request(
 		request,
 		[](json::value const& jvalue, json::value& response)
@@ -139,21 +139,19 @@ void handle_put(http_request request)
 			{
 				if (e.second.is_string())
 				{
-					auto key = e.second.as_string();
+					auto key = e.second.as_string();  // symbol is second value of json, i want make it as a key 
 
 					if (responseDictionary.find(key) == responseDictionary.end()) // return iterator .end() if element not present
 					{
-						auto current_pair = responseDictionary.insert(pair<utility::string_t, int>(key, 0));
+						auto current_pair = responseDictionary.insert(pair<utility::string_t, int>(key, 1));
 						auto value = responseDictionary[key];
 						PRINT_ACTION(L"added", key, value);
-						DictCreation::printMap(responseDictionary);
 					}
 					else
 					{
 						responseDictionary[key] = responseDictionary[key] + 1;
 						auto value = responseDictionary[key];
 						PRINT_ACTION(L"updated", key, value);
-						DictCreation::printMap(responseDictionary);
 					}
 
 					wcout << "responseDictionary" << endl;

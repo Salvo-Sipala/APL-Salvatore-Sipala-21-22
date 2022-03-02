@@ -10,8 +10,9 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from BackEnd.models import AppUser, Stock, FollowedStock
-from BackEnd.serializers import RegistrationSerializer, StockSerializer, FollowedStockSerializer
+from BackEnd.models import AppUser, Stock, FollowedStock, SearchCounter
+from BackEnd.serializers import RegistrationSerializer, StockSerializer, FollowedStockSerializer, \
+    SearchCounterSerializer
 from utilities.stock_mapping import *
 
 import json
@@ -36,10 +37,10 @@ def register_user(request):
     :param request: receives a request from the front-end
     :return: json response with data to the front-end
     """
-    serializer = RegistrationSerializer(data=request.data)  # request.data is a dict
+    registration_serializer = RegistrationSerializer(data=request.data)  # request.data is a dict
     data = {}
-    if serializer.is_valid():
-        new_user = serializer.save()
+    if registration_serializer.is_valid():
+        new_user = registration_serializer.save()
         data['response'] = "Registration was successful"
         data['email'] = new_user.email
         data['name'] = new_user.name
@@ -49,7 +50,7 @@ def register_user(request):
         data['token'] = token
         return JsonResponse(data, status=status.HTTP_201_CREATED)
     else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(registration_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['PUT'])
@@ -60,7 +61,33 @@ def stock_search(request):
     :param request: request from the front-end
     :return: response with data to the front-end
     """
-    #increment_search_counter(request)
+    # request_data = json.loads(request.body.decode('utf-8'))
+    headers = {
+        'Content-Type': 'application/json',
+        'X-API-KEY': 'sED5TaN7LM7W763Hp5ux872XuqPM9AYS58iskZ6g'
+    }
+
+    yahoo_finance_api_url = 'https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=' + request.data
+
+    response = requests.get(url=yahoo_finance_api_url, headers=headers)
+
+    if response.status_code == 200:
+        json_data = json.loads(response.text)  # json_data is a dict, response.text is a string (in the shape of a dict)
+        response_json = search_stock_mapping(json_data)
+        increment_search_counter(request)
+        return Response(response_json, status=status.HTTP_200_OK)
+    else:
+        return Response({'response': 'Failed to search!'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def get_more_info(request):
+    """
+    search stock market with the symbol passed by front-end
+    :param request: request from the front-end
+    :return: response with data to the front-end
+    """
     # request_data = json.loads(request.body.decode('utf-8'))
     headers = {
         'Content-Type': 'application/json',
@@ -137,6 +164,7 @@ def get_user_favourites_stocks(request):
             stock = Stock.objects.get(symbol=f.stock_symbol_id)
             stock_list.append(stock)
             stock_serializer = StockSerializer(data=stock_list, many=True)
+            print(stock_serializer)
             if stock_serializer.is_valid():
                 print("Serializer is valid!")
 
@@ -151,16 +179,55 @@ def increment_search_counter(request):
         'Content-Type': 'application/json'
     }
 
-    url = "http://localhost:8082/stats/search_increment"
+    url = 'http://localhost:8082/stats/search_increment'
 
     data = {
         'symbol': request.data,
     }
-    print(data)
-    response = requests.put(url=url, headers=headers, data=data)
-    print(response.text)
+    response = requests.put(url=url, headers=headers, json=data)
+
     if response.status_code == 200:
         json_data = json.loads(response.text)  # json_data is a dict, response.text is a string (in the shape of a dict)
         print(json_data)
-    else:
+
+        try:
+            print("CIAO")
+            symbol_selected = SearchCounter.objects.get(symbol=data['symbol'])
+            new_search_key = data['symbol']
+            new_search_value = json_data[data['symbol']]
+            new_dict = {
+                'symbol': new_search_key,
+                'number_of_times_searched': new_search_value
+            }
+            serializer_for_save = SearchCounterSerializer(instance=symbol_selected, data=new_dict)
+            print('\n', serializer_for_save, serializer_for_save.is_valid())
+            if serializer_for_save.is_valid():
+                print("serializer valid(try)")
+                serializer_for_save.save()
+                print("full saved")
+                return Response(serializer_for_save.data, status=status.HTTP_200_OK)
+            else:
+                print(serializer_for_save.errors)
+        except ObjectDoesNotExist:
+            new_search_key = data['symbol']
+            new_search_value = json_data[data['symbol']]
+            new_dict = {
+                'symbol': new_search_key,
+                'number_of_times_searched': new_search_value
+            }
+            serializer_for_save = SearchCounterSerializer(data=new_dict)
+            print('\n', serializer_for_save, serializer_for_save.is_valid())
+            if serializer_for_save.is_valid():
+                print("serializer valid(try)")
+                serializer_for_save.save()
+                print("full saved")
+                return Response(serializer_for_save.data, status=status.HTTP_200_OK)
+            else:
+                print(serializer_for_save.errors)
+            print(KeyError)
+
+    elif response.status_code == 400:
+        print(response.status_code)
+
+    elif response.status_code == 500:
         print(response.status_code)

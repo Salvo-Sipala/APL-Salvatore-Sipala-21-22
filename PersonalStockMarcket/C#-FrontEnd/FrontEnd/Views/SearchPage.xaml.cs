@@ -57,7 +57,7 @@ namespace FrontEnd.Views
             // Find -> cerca un elemento che soddisfi le condizioni definite nel predicato specificato e restituisce
             // la prima occorrenza all'interno dell'intero oggetto list<t>.
             // Stock button_stock = SearchedStock.Find(SearchedStock => SearchedStock.Symbol == stock_to_search);
-            HttpResponseMessage response = await StockRequest.GetStockBySymbol(json);
+            HttpResponseMessage response = await StockRequest.GetMoreInfo(json);
 
             if (response.IsSuccessStatusCode)
             {

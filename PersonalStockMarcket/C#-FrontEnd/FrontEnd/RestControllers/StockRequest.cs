@@ -32,10 +32,11 @@ namespace FrontEnd.RestControllers
             return await Task.FromResult(response);
         }
 
-        public static async Task<HttpResponseMessage> GetMoreInfo()
+        public static async Task<HttpResponseMessage> GetMoreInfo(string json_symbol)
         {
             string token;
             HttpClient client = new HttpClient();
+            StringContent content = new StringContent(json_symbol, Encoding.UTF8, "application/json");
 
             try
             {
@@ -48,7 +49,7 @@ namespace FrontEnd.RestControllers
             }
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", token);
-            HttpResponseMessage response = await client.GetAsync(RestUrl.Base_url + "/stock_selected");
+            HttpResponseMessage response = await client.PutAsync(RestUrl.Base_url + "/get_more_info", content);
             return await Task.FromResult(response);
         }
 

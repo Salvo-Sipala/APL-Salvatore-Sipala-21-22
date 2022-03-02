@@ -7,21 +7,22 @@
             <Button Text="Show my favourites stocks!"
                     TextColor="White" BackgroundColor="SlateGray" 
                     Clicked="Button_Clicked"/>
-            <CollectionView x:Name="FollowedCollection" ItemsSource="{Binding FollowedStocks}">
+            <CollectionView x:Name="FollowedCollection" ItemsSource="{Binding FollowedStocks}"
+                            Margin="10">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Span="2" Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="0" RowSpacing="20" ColumnSpacing="40">
+                        <Grid Padding="0" RowSpacing="30" ColumnSpacing="30">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Text="Ticker" Grid.Row="0" Grid.Column="0" 
@@ -52,14 +53,14 @@
                                    Grid.Column="1"
                                    FontSize="Medium"
                                    Margin="0,0,0,0"
-                                   FontAttributes="Italic"
+                                   FontAttributes="Bold"
                                    TextColor="Gray" />
                             <Label Text="{Binding RegularMarketChange}"
                                    Grid.Row="1"
                                    Grid.Column="2"
                                    FontSize="Medium"
                                    Margin="0,0,0,0"
-                                   FontAttributes="Italic"
+                                   FontAttributes="Bold"
                                    TextColor="Gray" />
                             <Label Text="{Binding RegularMarketChangePercent}"
                                    Grid.Row="2"

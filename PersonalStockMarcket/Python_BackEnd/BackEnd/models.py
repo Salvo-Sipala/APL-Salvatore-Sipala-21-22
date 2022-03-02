@@ -83,9 +83,6 @@ class Stock(models.Model):
     # id = models.AutoField(primary_key=True, default=0, null=False)
     symbol = models.CharField(primary_key=True, max_length=20, null=False, unique=True)
     shortName = models.CharField(max_length=100)
-    # regularMarketPrice = models.DecimalField(max_digits=10, decimal_places=7)
-    # regularMarketChange = models.DecimalField(max_digits=10, decimal_places=7)
-    # regularMarketChangePercent = models.DecimalField(max_digits=10, decimal_places=7)
     regularMarketPrice = models.FloatField()
     regularMarketChange = models.FloatField()
     regularMarketChangePercent = models.FloatField()
@@ -103,3 +100,11 @@ class FollowedStock(models.Model):
 
     class Meta:
         unique_together = ['user', 'stock_symbol']
+
+
+class SearchCounter(models.Model):
+    symbol = models.CharField(primary_key=True, max_length=20, null=False, unique=True)
+    number_of_times_searched = models.IntegerField()
+
+    # class Meta:
+    #     unique_together = ['symbol', 'number_of_times_searched']

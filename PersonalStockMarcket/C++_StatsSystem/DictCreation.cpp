@@ -15,22 +15,18 @@ public:
 		std::wcout << " }" << std::endl;
 	}
 
+	// convert a std::map into json
 	template<typename Map>
 	static web::json::value mapToJson(Map& myMap)
 	{
-		web::json::value result = web::json::value::array();
-		//std::map<utility::string_t, int> myMap;
+		web::json::value result = web::json::value::object();
 
-		int i = 0;
-		for (std::pair<utility::string_t, int> p : myMap)
+		typename Map::iterator it;
+		for (it = myMap.begin(); it != myMap.end(); it++)
 		{
-			web::json::value obj = web::json::value::object();
-
-			obj[U("symbol")] = web::json::value(p.first);
-			obj[U("numberSerachedTimes")] = web::json::value(p.second);
-
-			result[i++] = obj;
+			result[(it->first)] = web::json::value(it->second);
 		}
 		return result;
 	}
+
 };
