@@ -12,7 +12,7 @@ namespace FrontEnd.Constants
 
         // Ngrok site for create a tunnel between a local port (8081) of my local webserver
         // and a public URLs. So backend exposed in 8081 port to frontend with this site
-        public static string Base_url => "http://6b88-87-21-101-170.ngrok.io"; // -> http://localhost:8081
+        public static string Base_url => "http://dbc9-87-21-101-170.ngrok.io"; // -> http://localhost:8081
 
         public static string Login_url => "/login";
         public static string Registration_url => "/register";

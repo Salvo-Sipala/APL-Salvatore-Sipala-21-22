@@ -7,14 +7,14 @@
             <Button Text="Show my favourites stocks!"
                     TextColor="White" BackgroundColor="SlateGray" 
                     Clicked="Button_Clicked"/>
-            <CollectionView x:Name="FollowedCollection" ItemsSource="{Binding FollowedStocks}"
+            <CollectionView x:Name="FollowedCollection" ItemsSource="{Binding Stocks}"
                             Margin="10">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Span="2" Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="0" RowSpacing="30" ColumnSpacing="30">
+                        <Grid Padding="10" RowSpacing="30" ColumnSpacing="30">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />

@@ -17,6 +17,9 @@ namespace FrontEnd.Views
     public partial class FavouritesStockPage : ContentPage
     {
         public List<FollowedStock> FollowedStocks { get; set; }
+
+        public List<Stock> Stocks { get; set; }
+
         public FavouritesStockPage()
         {
             InitializeComponent();
@@ -31,7 +34,8 @@ namespace FrontEnd.Views
             {
                 string response_content = await response.Content.ReadAsStringAsync();
                 FollowedStocks = JsonConvert.DeserializeObject<List<FollowedStock>>(response_content);
-                FollowedCollection.ItemsSource = FollowedStocks;
+                Stocks = JsonConvert.DeserializeObject<List<Stock>>(response_content);
+                FollowedCollection.ItemsSource = Stocks;
             }
             else
             {
